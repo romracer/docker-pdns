@@ -27,7 +27,7 @@ $db_type = 'mysql';
 
 // Security settings
 // This should be changed upon install
-$session_key = 'vo4healj4es7ga5hew7w';
+$session_key = '6MmYZvccNkgUaBDcAJ9b';
 $password_encryption = 'md5'; // or md5salt
 
 // Interface settings

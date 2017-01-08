@@ -3,17 +3,23 @@ services:
   pdns:
     build: . 
     #image: secns/pdns
+    links:
+    - "db:db"
     ports:
     - "53:53"
     - "53:53/udp"
     - "8080:80"
+    - "8081:8081"
     environment:
-    - PDNS_ALLOW_AXFR_IPS=127.0.0.1
-    - PDNS_DISTRIBUTOR_THREADS=3
-    - PDNS_CACHE_TTL=20
-    - PDNS_RECURSIVE_CACHE_TTL=10
-    - DB_ENV_MYSQL_ROOT_PASSWORD=aPYsB84zdNZNmn64sjy
+    - PDNSCONF_API_KEY=DJADcxuG4MaEtf200svqDpBPSraKtwRI
+    - PDNSCONF_MASTER=yes
+    - PDNSCONF_DEFAULT_SOA_NAME=dnsserver.domain.com
+    - PDNSCONF_DNSUPDATE=yes
+    - DB_ENV_MYSQL_PASSWORD=DGGdr68SMcjYFdQkuCC2
   db:
     image: mysql
     environment:
     - MYSQL_ROOT_PASSWORD=aPYsB84zdNZNmn64sjy
+    - MYSQL_DATABASE=pdns
+    - MYSQL_USER=pdns
+    - MYSQL_PASSWORD=DGGdr68SMcjYFdQkuCC2
