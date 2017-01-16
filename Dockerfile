@@ -42,6 +42,7 @@ COPY assets/nginx/fastcgi_params /etc/nginx/fastcgi_params
 
 COPY assets/php/php.ini /etc/php5/fpm/php.ini
 COPY assets/php/php-cli.ini /etc/php5/cli/php.ini
+RUN sed -i -re 's|^error_log\s?=.*|error_log=/proc/self/fd/2|' /etc/php5/fpm/php-fpm.conf
 
 RUN rm /etc/nginx/sites-enabled/default
 RUN php5enmod mcrypt
